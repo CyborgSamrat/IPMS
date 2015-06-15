@@ -4,11 +4,11 @@
     ViewBag.Title = "Select Device";
 }
 
-<h2 style="text-align:right">Select Device</h2>
+<h2 style="text-align:right">Device Location</h2>
 
-<h1>@ViewBag.device</h1>
+<h5>Room No:@ViewBag.room</h5>
+<h6>Device ID: @ViewBag.device</h6>
 
-<h1>@ViewBag.room</h1>
 
 
 @{
@@ -37,26 +37,26 @@
             var did = devices[i, j, 1];
             if (did == ViewBag.device)
             {
-                <a href='@Url.Action("Create", "Complaints", new { id = did }, null)'>
-                    <img class="img-thumbnail" src="~/Content/images/spc.jpg" style="height:100px;width:100px" />
-                </a>
+               
+                    <img class="img-thumbnail" src="~/Content/images/spc.gif" style="height:12.5%;width:12.5%" />
+                
             }
-            if (devices[i, j, 1] != 0)
+            else if (devices[i, j, 1] != 0)
             {
 
-                <a href='@Url.Action("Create", "Complaints", new { id = did }, null)'>
-                    <img class="img-thumbnail" src="~/Content/images/pc.png" style="height:100px;width:100px" />
-                </a>
-
+                
+                    <img class="img-thumbnail" src="~/Content/images/pc.png" style="height:12.5%;width:12.5%" />
+                
             }
             else
             {
-                <img class="img-thumbnail" src="~/Content/images/nopc.png" style="height:100px;width:100px" />
+                <img class="img-thumbnail" src="~/Content/images/nopc.png" style="height:12.5%;width:12.5%" />
             }
 
            
 
         }
+        <br />
     }
 
 }

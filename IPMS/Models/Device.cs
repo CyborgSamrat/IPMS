@@ -12,7 +12,7 @@ namespace IdentitySample.Models
         public int DeviceId { get; set; }
         [Required]
         [Display(Name = "Device Status")]
-        public string Status { get; set; }
+        public bool IsGood { get; set; }
         [Required]
         [Display(Name="Location")]
         public int LocationId { get; set; }

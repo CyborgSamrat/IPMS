@@ -318,6 +318,10 @@
     <Compile Include="Migrations\201506092151307_test.Designer.cs">
       <DependentUpon>201506092151307_test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506150433350_changeDeviceStatusToBool.cs" />
+    <Compile Include="Migrations\201506150433350_changeDeviceStatusToBool.Designer.cs">
+      <DependentUpon>201506150433350_changeDeviceStatusToBool.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
@@ -349,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506092151307_test.resx">
       <DependentUpon>201506092151307_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506150433350_changeDeviceStatusToBool.resx">
+      <DependentUpon>201506150433350_changeDeviceStatusToBool.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
