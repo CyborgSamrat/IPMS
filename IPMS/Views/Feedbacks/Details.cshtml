@@ -1,0 +1,50 @@
+﻿@model IdentitySample.Models.Feedback
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Feedback</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Issue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Issue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Body)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Body)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GivenBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GivenBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ComplaintId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComplaintId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.FeedbackId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

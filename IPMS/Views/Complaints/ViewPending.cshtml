@@ -1,0 +1,47 @@
+﻿@model IEnumerable<IdentitySample.Models.Complaint>
+@{
+    ViewBag.Title = "View Pending";
+}
+
+<h2 style="text-align:right">Pending Complaints</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Issue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (!item.IsSolved && item.IsAssigned)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Issue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.ActionLink("See Feedbacks", "ShowAll", "Feedbacks", new { id = item.ComplaintId }, null) |
+                    @Html.ActionLink("Give Feedback", "Create", "Feedbacks", new { id = item.ComplaintId }, null) |
+                    @Html.ActionLink("Mark As Solved", "MarkAsSolved", "Complaints", 
+                                new { id = item.ComplaintId}, null)
+                    
+
+
+                </td>
+
+
+
+            </tr>
+        }
+    }
+
+</table>

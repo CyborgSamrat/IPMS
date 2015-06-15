@@ -1,0 +1,66 @@
+﻿@model IEnumerable<IdentitySample.Models.Complaint>
+
+@{
+    ViewBag.Title = "New Complaints";
+}
+
+<h2 style="text-align:right">New Complaints</h2>
+
+
+<table class="table">
+    @{
+        int i = 0;
+    }
+
+    @foreach (var item in Model)
+    {
+        
+            i++;
+            if (i == 1)
+            {
+                <tr>
+                   
+                    <th>
+                        @Html.DisplayNameFor(model => model.Issue)
+                    </th>
+                    
+                    <th>
+                        @Html.DisplayNameFor(model => model.LodgedBy)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DeviceId)
+                    </th>
+
+                    <th></th>
+                </tr>
+            }
+
+            <tr>
+               
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Issue)
+                </td>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.LodgedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeviceId)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Assign Technician", "AssignTechnician", new { id = item.ComplaintId })
+                </td>
+            </tr>
+       
+    }
+
+</table>
+
+@{
+    if (i == 0)
+    {
+        <h4>No new complaints</h4>
+    }
+}

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<IdentitySample.Models.Complaint>
+
+@{
+    ViewBag.Title = "Pending Complaints";
+}
+
+<h2 style="text-align:right">Pending Complaints</h2>
+
+
+<table class="table">
+    @{
+        int i = 0;
+    }
+
+    @foreach (var item in Model)
+    {
+
+        i++;
+        if (i == 1)
+        {
+            <tr>
+              
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Issue)
+                </th>
+                
+                <th>
+                    @Html.DisplayNameFor(model => model.LodgedBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DeviceId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AssignedTo)
+                </th>
+
+                <th></th>
+            </tr>
+        }
+
+        <tr>
+            
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Issue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LodgedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssignedTo)
+            </td>
+
+            <td>
+                @Html.ActionLink("View Feedbacks", "ShowAll", "Feedbacks", new { id = item.ComplaintId }, null) |
+                @Html.ActionLink("Give Feedbacks", "Create", "Feedbacks", new { id = item.ComplaintId }, null)
+
+
+            </td>
+        </tr>
+
+    }
+
+</table>

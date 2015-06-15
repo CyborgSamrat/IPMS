@@ -1,0 +1,37 @@
+﻿@model IEnumerable<IdentitySample.Models.Notification>
+
+
+    @{
+        int i = 0;
+    }
+
+
+
+    @foreach (var item in Model)
+    {
+        if (!item.IsSeen)
+        {
+            i++;
+
+            <ul class="list-group">
+                
+                
+                <li class="list-group-item" >
+                    @Html.ActionLink(item.Issue , "View", new { id = item.NotificationId })
+                    
+                </li>
+
+            </ul>
+
+        }
+
+    }
+
+
+
+@{
+    if (i == 0)
+    {
+        <h4>There is no new notifications !</h4>
+    }
+}

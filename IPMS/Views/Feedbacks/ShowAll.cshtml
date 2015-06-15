@@ -1,0 +1,57 @@
+﻿@model IEnumerable<IdentitySample.Models.Feedback>
+@{
+    ViewBag.Title = "Feedbacks";
+}
+
+<h2 style="text-align:right">Feedbacks</h2>
+
+<table class="table">
+    @{
+        int i = 0;
+    }
+   
+    @foreach (var item in Model)
+    {
+        i++;
+        if (i == 1)
+        {
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Issue)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Body)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GivenBy)
+                </th>
+
+            </tr>
+
+        }
+
+
+
+           <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Issue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Body)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GivenBy)
+            </td>
+
+        </tr>
+    }
+
+</table>
+@{
+    if (i == 0)
+    {
+        <h3>No feedbacks !</h3>
+    }
+
+}
+

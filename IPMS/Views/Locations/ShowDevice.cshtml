@@ -1,0 +1,62 @@
+﻿@model IEnumerable<IdentitySample.Models.Location>
+
+@{
+    ViewBag.Title = "Select Device";
+}
+
+<h2 style="text-align:right">Select Device</h2>
+
+<h1>@ViewBag.device</h1>
+
+<h1>@ViewBag.room</h1>
+
+
+@{
+    int[, ,] devices = new int[8, 8, 2];
+    for (int i = 1; i < 8; i++)
+    {
+        for (int j = 1; j < 8; j++)
+        {
+            devices[i, j, 1] = 0;
+        }
+    }
+    foreach (var item in Model)
+    {
+        if (item.Row < 8 && item.Column < 8)
+        {
+            devices[item.Row, item.Column, 1] = item.Device;
+        }
+
+
+    }
+
+    for (int i = 1; i < 8; i++)
+    {
+        for (int j = 1; j < 8; j++)
+        {
+            var did = devices[i, j, 1];
+            if (did == ViewBag.device)
+            {
+                <a href='@Url.Action("Create", "Complaints", new { id = did }, null)'>
+                    <img class="img-thumbnail" src="~/Content/images/spc.jpg" style="height:100px;width:100px" />
+                </a>
+            }
+            if (devices[i, j, 1] != 0)
+            {
+
+                <a href='@Url.Action("Create", "Complaints", new { id = did }, null)'>
+                    <img class="img-thumbnail" src="~/Content/images/pc.png" style="height:100px;width:100px" />
+                </a>
+
+            }
+            else
+            {
+                <img class="img-thumbnail" src="~/Content/images/nopc.png" style="height:100px;width:100px" />
+            }
+
+           
+
+        }
+    }
+
+}

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<IdentitySample.Models.Notification>
+@{
+    ViewBag.Title = "New Notifications";
+}
+
+<h2 style="text-align:right">New Notifications</h2>
+
+
+<table class="table">
+    @{
+        int i = 0;
+    }
+
+   
+    
+    @foreach (var item in Model)
+    {
+        if (!item.IsSeen)
+        {
+            i++;
+         if (i == 1)
+         {
+           <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Issue)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Sender)
+                </th>
+
+            </tr>
+         }
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Issue)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sender)
+                </td>
+                <td>
+                    @Html.ActionLink("View", "View", new { id = item.NotificationId })
+                </td>
+
+            </tr>
+
+        }
+
+    }
+
+</table>
+
+@{
+    if (i == 0)
+    {
+        <h2>There is no new notifications !</h2>
+    }
+}

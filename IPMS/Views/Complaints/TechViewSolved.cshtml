@@ -1,0 +1,59 @@
+﻿@model IEnumerable<IdentitySample.Models.Complaint>
+@{
+    ViewBag.Title = "View Solved";
+}
+
+<h2 style="text-align:right">Solved Complaints</h2>
+
+@{
+    int i = 0;
+}
+
+
+<table class="table">
+
+    @foreach (var item in Model)
+    {
+        if (item.IsSolved)
+        {
+            i++;
+            if (i == 1)
+            {
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Issue)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+
+                </tr>
+            }
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Issue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.ActionLink("See Feedbacks", "ShowAll", "Feedbacks", new { id = item.ComplaintId }, null) |
+                    @Html.ActionLink("Give Feedback", "Create", "Feedbacks", new { id = item.ComplaintId }, null)
+
+
+                </td>
+
+
+
+            </tr>
+        }
+    }
+
+</table>
+
+@{
+    if (i == 0)
+    {
+        <h3>There is no solved complaints</h3>
+    }
+}

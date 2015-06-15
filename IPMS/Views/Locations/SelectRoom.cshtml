@@ -1,0 +1,49 @@
+﻿
+
+@{
+    ViewBag.Title = "Select Room";
+}
+@{
+    List<int> roomlist = new List<int>();
+}
+
+@{
+    var rooms = ViewBag.RoomList;
+    foreach (var item in rooms)
+    {
+        roomlist.Add(item);
+    }
+}
+
+<h2 style="text-align:right">Select Room</h2>
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Select Room</h4>
+        <hr />
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Room">Room</label>
+            @Html.DropDownList("Room", new SelectList(roomlist),  new { @class = "form-control" } )
+
+
+        </div>
+
+        
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Proceed" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<IdentitySample.Models.Complaint>
+@{
+    ViewBag.Title = "Give Feedback";
+}
+
+<h2 style="text-align:right">Give Feedback</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Issue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (!item.IsSolved)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Issue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.ActionLink("Give Feedback", "Create", "Feedbacks", new { id = item.ComplaintId }, null)
+                </td>
+
+            </tr>
+        }
+    }
+
+</table>

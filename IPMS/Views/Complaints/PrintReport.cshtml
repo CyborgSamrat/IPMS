@@ -1,0 +1,176 @@
+﻿@model IEnumerable<IdentitySample.Models.Complaint>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <style>
+        table{
+            border:2px;
+            border-collapse:collapse;
+            text-align:center;
+            border-color:darkblue;
+        }
+        th{
+            color:white;
+            background-color:lightblue;
+        }
+        td {
+            background-color:aliceblue;
+            color:black;
+        }
+        body{
+           align-content:center;
+        }
+        .attract {
+               margin: auto;
+               position: absolute;
+               top: 0; 
+               left: 25%; 
+               right: 25%;
+               text-align:center;
+               background-color:white;
+        }
+    </style>
+    <title>Print Report</title>
+</head>
+<body>
+    <div class="attract">
+<h2>IIT Problem Management System (IPMS)</h2>
+        <h3>Complaint Report</h3>
+    <h4>Pending Complaints</h4>
+    <table>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LodgedOn)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Issue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LodgedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeviceId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssignedTo)
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+
+            if (!item.IsSolved)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LodgedOn)
+                    </td>
+
+                    
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Issue)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LodgedBy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DeviceId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AssignedTo)
+                    </td>
+
+                </tr>
+
+             }
+            }
+
+    </table>
+
+
+    <h4>Solved Complaints   </h4>
+    <table class="table table-bordered">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LodgedOn)
+            </th>
+
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Issue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LodgedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeviceId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssignedTo)
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+
+            if (item.IsSolved)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LodgedOn)
+                    </td>
+
+                    
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Issue)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LodgedBy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DeviceId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AssignedTo)
+                    </td>
+
+                </tr>
+
+            }
+            }
+
+    </table>
+
+
+    <br/>
+
+
+    @Html.ActionLink("Print", "GeneratePDF", "Complaints", null, new { @class = "btn btn-primary" })
+<br><br><br>
+</div>
+</body>
+</html>

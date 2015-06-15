@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - IIT Problem Management System</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        .notiSidebar {
+            background-color: aliceblue;
+            width: 25%;
+            position: absolute;
+            top: 7%;
+            left: 75%;
+        }
+
+
+        .smallbody {
+            width: 65%;
+            height: 90%;
+            left: 5%;
+            top: 100px;
+            background-color: lightcyan;
+        }
+
+        .usermenu {
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("IIT Problem Management System", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (Request.IsAuthenticated) { 
+                    <li class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                            IPMS
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Home", "Index", "Home") </li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                           
+                        </ul>
+                    </li>
+                    }
+                    
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        
+                        
+                    <li class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                            User Admin
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Users", "Index", "UsersAdmin")</li>
+                            <!--<li>@Html.ActionLink("Roles", "Index", "RolesAdmin")</li>
+                            <li>@Html.ActionLink("Groups", "Index", "GroupsAdmin")</li>-->
+            
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                            Complaint Admin
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                @Html.ActionLink("New Complaints", "AdminViewNew", "Complaints",
+                                         new { id = HttpContext.Current.User.Identity.Name }, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("Pending Complaints", "AdminViewPending", "Complaints",
+                                         new { id = HttpContext.Current.User.Identity.Name }, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("Solved Complaints", "AdminViewSolved", "Complaints",
+                                         new { id = HttpContext.Current.User.Identity.Name }, null)
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                            Device Admin
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Locations", "Index", "Locations")</li>
+                            <li>@Html.ActionLink("Create Locations", "Create", "Locations")</li>
+            
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                            Complaint Report
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                @Html.ActionLink("Last 7 Days", "PrintReport", "Complaints",
+                                                         new { id = 7 }, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("Last 15 Days", "PrintReport", "Complaints",
+                                                         new { id = 15 }, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("Last 30 Days", "PrintReport", "Complaints",
+                                                         new { id = 30 }, null)
+                            </li>
+                        </ul>
+                    </li>
+
+
+
+
+                    }
+                    @if (Request.IsAuthenticated && User.IsInRole("Technician"))
+                    {
+                        <li class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                                Assigned Complaints
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    @Html.ActionLink("Assigned Complaints", "TechViewPending", "Complaints",
+                                         new { id = HttpContext.Current.User.Identity.Name }, null)
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Solved Complaints", "TechViewSolved", "Complaints",
+                                         new { id = HttpContext.Current.User.Identity.Name }, null)
+                                </li>
+                            </ul>
+                        </li>
+                        
+                    }
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    @if (Request.IsAuthenticated)
+    {
+        <div class="notiSidebar">
+            <h3 class="btn-block">
+                @Html.ActionLink("New Notifications", "UnseenNotification", "Notifications", new { id = HttpContext.Current.User.Identity.Name }, null)
+            </h3>
+            @Html.Action("_NotificationPartial", "Notifications", new { id = HttpContext.Current.User.Identity.Name })
+            
+        </div>
+
+
+    }
+
+
+
+    <div class="container body-content">
+        @if (Request.IsAuthenticated)
+        {
+            <div class="usermenu">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                Complaint
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Lodge Complaint", "SelectRoom", "Locations")</li>
+                                <li>
+                                    @Html.ActionLink("Pending Complaint", "ViewPending", "Complaints",
+                                         new { id = HttpContext.Current.User.Identity.Name }, null)
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Solved Complaint", "ViewSolved", "Complaints",
+                                         new { id = HttpContext.Current.User.Identity.Name }, null)
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                Notification
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    @Html.ActionLink("New Notifications", "UnseenNotification", "Notifications",
+                                     new { id = HttpContext.Current.User.Identity.Name }, null)
+                            </li>
+                            <li>@Html.ActionLink("Notify", "Create", "Notifications")</li>
+                            <li>
+                                @Html.ActionLink("All Notifications", "AllNotifications", "Notifications",
+                new { id = HttpContext.Current.User.Identity.Name }, null)
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                            Feedback
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                @Html.ActionLink("View Feedback", "Feedback", "Complaints",
+                                         new { id = HttpContext.Current.User.Identity.Name }, null)
+                        </li>
+                        <li>
+                            @Html.ActionLink("Give Feedback", "GiveFeedback", "Complaints",
+                                         new { id = HttpContext.Current.User.Identity.Name }, null)
+                    </li>
+                </ul>
+            </div>
+        </li>
+       <!-- <li>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                    Profile
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        @Html.ActionLink("View Profile", "UserProfile", "Account",
+                        new { id = HttpContext.Current.User.Identity.Name }, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("Edit Profile", "Edit", "Account",
+                        new { id = HttpContext.Current.User.Identity.Name }, null)
+                    </li>
+                </ul>
+            </div>
+        </li>
+           -->
+    </ul>
+</div>
+        }
+
+        <div class="smallbody">
+            @RenderBody()
+        </div>
+
+        <hr />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <footer class="panel-footer">
+            <p>&copy; @DateTime.Now.Year - IIT Problem Management System</p>
+        </footer>
+    </div>
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
