@@ -23,7 +23,7 @@ namespace IdentitySample.Controllers
 
         // GET: Locations/Details/5
         [Authorize]
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, int? id2)
         {
             if (id == null)
             {
@@ -96,11 +96,11 @@ namespace IdentitySample.Controllers
         }
 
         [Authorize]
-        public ActionResult ShowDevice(int? id = 0)
+        public ActionResult ShowDevice(int? id = 0, int? id2 = 405)
         {
 
             
-            var room = 405;
+            var room = id2;
             var locations = new List<Location>();
             var locs = new List<Location>();
             locations = db.Locations.ToList();

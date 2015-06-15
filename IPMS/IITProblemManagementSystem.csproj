@@ -206,6 +206,7 @@
     <Content Include="Views\Locations\SelectRoom.cshtml" />
     <Content Include="Views\Locations\SelectDevice.cshtml" />
     <Content Include="Views\Locations\ShowDevice.cshtml" />
+    <Content Include="Views\Complaints\UserViewNew.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

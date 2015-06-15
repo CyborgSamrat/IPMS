@@ -183,11 +183,15 @@
                             <ul class="dropdown-menu">
                                 <li>@Html.ActionLink("Lodge Complaint", "SelectRoom", "Locations")</li>
                                 <li>
-                                    @Html.ActionLink("Pending Complaint", "ViewPending", "Complaints",
+                                    @Html.ActionLink("New Complaints", "UserViewNew", "Complaints",
                                          new { id = HttpContext.Current.User.Identity.Name }, null)
                                 </li>
                                 <li>
-                                    @Html.ActionLink("Solved Complaint", "ViewSolved", "Complaints",
+                                    @Html.ActionLink("Pending Complaints", "ViewPending", "Complaints",
+                                         new { id = HttpContext.Current.User.Identity.Name }, null)
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Solved Complaints", "ViewSolved", "Complaints",
                                          new { id = HttpContext.Current.User.Identity.Name }, null)
                                 </li>
                             </ul>

@@ -34,6 +34,12 @@ namespace IdentitySample.Controllers
             {
                 return HttpNotFound();
             }
+            var complaints = from c in db.Complaints select c;
+            complaints = complaints.Where(c => c.AssignedTo.Equals(id));
+            var location = from l in db.Locations select l;
+            location = location.Where(l => l.Device.Equals(complaint.DeviceId));
+           Location loc = location.FirstOrDefault();
+           ViewBag.room = loc.Room;
             return View(complaint);
         }
             [Authorize(Roles = "Technician")]
@@ -198,10 +204,23 @@ namespace IdentitySample.Controllers
                 var notification = new NotificationsController();
                 notification.LodgeComplaintNotification(complaint);
 
-                return RedirectToAction("ViewPending", new {id = complaint.LodgedBy });
+                return RedirectToAction("UserViewNew", new {id = complaint.LodgedBy });
             }
 
             return View(complaint);
+        }
+
+
+        public ActionResult UserViewNew(string id = null)
+        {
+            if (id == null)
+            {
+                id = User.Identity.Name;
+            }
+            var user = db.Users.Find(id);
+            var complaints = from c in db.Complaints select c;
+            complaints = complaints.Where(c => c.LodgedBy.Equals(id));
+            return View(complaints.ToList());
         }
 
         [Authorize(Roles="Admin")]
