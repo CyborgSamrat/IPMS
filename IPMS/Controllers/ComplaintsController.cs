@@ -53,7 +53,7 @@ namespace IdentitySample.Controllers
         }
 
             [Authorize]
-        public ActionResult MarkAsSolved(int id)
+        public ActionResult MarkAsSolved(int? id)
         {
             db.Complaints.Find(id).IsSolved = true;
             db.SaveChanges();
@@ -62,7 +62,8 @@ namespace IdentitySample.Controllers
             notification.SolvedComplaintNotificationsAdmin(complaint);
 
 
-            return View("Index", "Home");
+            
+            return View();
         }
             [Authorize(Roles = "Technician")]
         public ActionResult TechViewSolved(string id)
@@ -82,7 +83,7 @@ namespace IdentitySample.Controllers
             return View(complaints.ToList());
 
         }
-            [Authorize(Roles = "Admin")]
+ 
         public ActionResult PrintReport(int? id = 30)
         {
             var fromDate = System.DateTime.Now;

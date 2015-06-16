@@ -14,7 +14,7 @@
     <RootNamespace>IdentitySample</RootNamespace>
     <AssemblyName>AspNetIdentity2GRoupPermissions</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -208,6 +208,8 @@
     <Content Include="Views\Locations\ShowDevice.cshtml" />
     <Content Include="Views\Complaints\UserViewNew.cshtml" />
     <None Include="Properties\PublishProfiles\ipms.pubxml" />
+    <Content Include="Views\Complaints\MarkAsSolved.cshtml" />
+    <None Include="Properties\PublishProfiles\IPMSF.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -240,7 +242,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\UsersAdmin\Index.cshtml" />
     <Content Include="Views\UsersAdmin\Edit.cshtml" />
     <Content Include="Views\UsersAdmin\Details.cshtml" />
@@ -378,7 +382,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62008</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/IITProblemManagementSystem</IISUrl>
+          <IISUrl>http://localhost:62008/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
